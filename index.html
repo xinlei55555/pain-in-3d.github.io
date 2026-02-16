@@ -234,7 +234,7 @@
                   <li>LoRA rank=8, alpha=16</li>
                   <li>Pretrained on 3D-Pain (150 epochs)</li>
                   <li>Best epoch: 141 (MAE 1.859)</li>
-                  <li>Ready for UNBC fine-tuning</li>
+                  <li>Ready for fine-tuning</li>
                   <li>MIT Licensed</li>
                 </ul>
                 <a href="https://huggingface.co/xinlei55555/ViTPain" class="button is-link is-rounded">
@@ -250,31 +250,71 @@
   </div>
 </section>
 
-<!-- Quick Start -->
+<!-- Dataset Gallery -->
 <section class="section" style="background-color: #f5f5f5;">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3 has-text-centered">Quick Start</h2>
-        <div class="content">
-          <h3 class="title is-5">1. Download pretrained weights</h3>
-          <pre><code>pip install huggingface-hub
-huggingface-cli download xinlei55555/ViTPain \
-    vitpain-epoch=141-val_regression_mae=1.859.ckpt \
-    --local-dir ./checkpoints/</code></pre>
+        <h2 class="title is-3 has-text-centered">Dataset Samples</h2>
+        <div class="content has-text-justified">
+          <p>
+            The 3D-Pain dataset contains <strong>2,500 unique synthetic identities</strong>, each with 10 pain expression variants
+            rendered from 3 viewpoints. Below are sample neutral&ndash;pain pairs across diverse identities, demonstrating
+            the controllable AU-driven expression synthesis.
+          </p>
+        </div>
 
-          <h3 class="title is-5">2. Fine-tune on UNBC-McMaster (5-Fold CV)</h3>
-          <pre><code>python scripts/run_unbc_5fold_cv.py \
-    --pretrained_checkpoint ./checkpoints/vitpain-epoch=141-val_regression_mae=1.859.ckpt \
-    --data_dir datasets/UNBC-McMaster \
-    --model_size large_dinov3 \
-    --batch_size 100 --max_epochs 50 \
-    --au_loss_weight 0.1 \
-    --use_weighted_sampling --use_neutral_reference \
-    --output_dir experiment/unbc_5fold_cv</code></pre>
+        <!-- Neutral vs Pain pairs -->
+        <h3 class="title is-5 has-text-centered" style="margin-bottom: 1rem;">Neutral &rarr; Pain Expression Pairs</h3>
+        <div class="columns is-multiline is-centered" style="margin-bottom: 2rem;">
+          <div class="column is-one-fifth has-text-centered">
+            <img src="./static/images/samples/sample_0000_neutral.jpg" alt="Identity 1 - Neutral" style="width:100%; border-radius:6px;">
+            <img src="./static/images/samples/sample_0000_pain.jpg" alt="Identity 1 - Pain" style="width:100%; border-radius:6px; margin-top:4px;">
+            <p class="is-size-7 has-text-grey">Identity 1</p>
+          </div>
+          <div class="column is-one-fifth has-text-centered">
+            <img src="./static/images/samples/sample_0050_neutral.jpg" alt="Identity 2 - Neutral" style="width:100%; border-radius:6px;">
+            <img src="./static/images/samples/sample_0050_pain.jpg" alt="Identity 2 - Pain" style="width:100%; border-radius:6px; margin-top:4px;">
+            <p class="is-size-7 has-text-grey">Identity 2</p>
+          </div>
+          <div class="column is-one-fifth has-text-centered">
+            <img src="./static/images/samples/sample_0100_neutral.jpg" alt="Identity 3 - Neutral" style="width:100%; border-radius:6px;">
+            <img src="./static/images/samples/sample_0100_pain.jpg" alt="Identity 3 - Pain" style="width:100%; border-radius:6px; margin-top:4px;">
+            <p class="is-size-7 has-text-grey">Identity 3</p>
+          </div>
+          <div class="column is-one-fifth has-text-centered">
+            <img src="./static/images/samples/sample_0200_neutral.jpg" alt="Identity 4 - Neutral" style="width:100%; border-radius:6px;">
+            <img src="./static/images/samples/sample_0200_pain.jpg" alt="Identity 4 - Pain" style="width:100%; border-radius:6px; margin-top:4px;">
+            <p class="is-size-7 has-text-grey">Identity 4</p>
+          </div>
+          <div class="column is-one-fifth has-text-centered">
+            <img src="./static/images/samples/sample_0500_neutral.jpg" alt="Identity 5 - Neutral" style="width:100%; border-radius:6px;">
+            <img src="./static/images/samples/sample_0500_pain.jpg" alt="Identity 5 - Pain" style="width:100%; border-radius:6px; margin-top:4px;">
+            <p class="is-size-7 has-text-grey">Identity 5</p>
+          </div>
+        </div>
+        <div class="content has-text-centered is-size-7 has-text-grey" style="margin-top: -1rem; margin-bottom: 2rem;">
+          Top row: neutral &nbsp;|&nbsp; Bottom row: pain (PSPI &asymp; 9)
+        </div>
 
-          <h3 class="title is-5">3. Evaluate</h3>
-          <pre><code>python scripts/evaluate_unbc.py experiment/unbc_5fold_cv</code></pre>
+        <!-- Multi-view -->
+        <h3 class="title is-5 has-text-centered" style="margin-bottom: 1rem;">Multi-View Rendering</h3>
+        <div class="columns is-centered">
+          <div class="column is-one-third has-text-centered">
+            <img src="./static/images/samples/sample_0100_pain_view_000.jpg" alt="View 0" style="width:100%; border-radius:6px;">
+            <p class="is-size-7 has-text-grey">View 1 (frontal)</p>
+          </div>
+          <div class="column is-one-third has-text-centered">
+            <img src="./static/images/samples/sample_0100_pain_view_001.jpg" alt="View 1" style="width:100%; border-radius:6px;">
+            <p class="is-size-7 has-text-grey">View 2</p>
+          </div>
+          <div class="column is-one-third has-text-centered">
+            <img src="./static/images/samples/sample_0100_pain_view_002.jpg" alt="View 2" style="width:100%; border-radius:6px;">
+            <p class="is-size-7 has-text-grey">View 3</p>
+          </div>
+        </div>
+        <div class="content has-text-centered is-size-7 has-text-grey">
+          Each pain expression is rendered from 3 different viewpoints for the same identity.
         </div>
       </div>
     </div>
@@ -318,6 +358,11 @@ huggingface-cli download xinlei55555/ViTPain \
           <p>
             This website template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>,
             licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            <a href="https://hits.seeyoufarm.com">
+              <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fxinlei55555.github.io%2Fpain-in-3d.github.io&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=visitors&edge_flat=false" alt="visitor count">
+            </a>
           </p>
         </div>
       </div>
