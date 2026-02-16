@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Pain in 3D: Generating Controllable Synthetic Faces for Automated Pain Assessment">
+  <meta name="keywords" content="Pain Assessment, Synthetic Data, 3D Faces, Action Units, Vision Transformer, ViTPain">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pain in 3D: Generating Controllable Synthetic Faces for Automated Pain Assessment</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩺</text></svg>">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+</head>
+<body>
+
+<!-- Hero / Title Section -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Pain in 3D: Generating Controllable Synthetic Faces for Automated Pain Assessment</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://github.com/xinlei55555">Xin Lei Lin</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://soroushmehraban.github.io/">Soroush Mehraban</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              Abhishek Moturu<sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.cs.toronto.edu/~taati/">Babak Taati</a><sup>1,2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Toronto,</span>
+            <span class="author-block"><sup>2</sup>KITE Research Institute, University Health Network</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2509.16727"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- arXiv Link -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2509.16727"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link -->
+              <span class="link-block">
+                <a href="https://github.com/TaatiTeam/Pain-in-3D"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <!-- Model Link -->
+              <span class="link-block">
+                <a href="https://huggingface.co/xinlei55555/ViTPain"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">&#129303;</span>
+                  <span>ViTPain Model</span>
+                </a>
+              </span>
+              <!-- Dataset Link -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/SoroushMehraban/3D-Pain"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">&#129303;</span>
+                  <span>3D-Pain Dataset</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser Image -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/preamble.png" alt="Pain in 3D: Sample synthetic pain faces showing controllable AU-driven expressions across diverse identities." style="width: 100%;">
+      <h2 class="subtitle has-text-centered">
+        <strong>Pain in 3D</strong> generates controllable synthetic pain faces with paired neutral references,
+        AU annotations, and clinically grounded PSPI scores across diverse identities.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- Abstract -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Automated pain assessment from facial expressions is crucial for non-communicative patients, such as those with dementia.
+            Progress has been limited by two challenges: (i) existing datasets exhibit severe demographic and label imbalance
+            due to ethical constraints, and (ii) current generative models cannot precisely control facial action units (AUs),
+            facial structure, or clinically validated pain levels.
+          </p>
+          <p>
+            We present <strong>3DPain</strong>, a large-scale synthetic dataset specifically designed for automated pain assessment,
+            featuring unprecedented annotation richness and demographic diversity. Our three-stage framework generates diverse 3D meshes,
+            textures them with diffusion models, and applies AU-driven face rigging to synthesize multi-view faces with paired neutral
+            and pain images, AU configurations, PSPI scores, and the first dataset-level annotations of pain-region heatmaps.
+            The dataset comprises <strong>82,500 samples</strong> across 25,000 pain expression heatmaps and 2,500 synthetic identities
+            balanced by age, gender, and ethnicity.
+          </p>
+          <p>
+            We further introduce <strong>ViTPain</strong>, a Vision Transformer based cross-modal distillation framework in which
+            a heatmap-trained teacher guides a student trained on RGB images, enhancing accuracy, interpretability, and clinical reliability.
+            Together, 3DPain and ViTPain establish a controllable, diverse, and clinically grounded foundation for generalizable
+            automated pain assessment.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Data Generation Pipeline -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Data Generation Pipeline</h2>
+        <div class="content has-text-centered">
+          <img src="./static/images/3dpain_pipeline.png" alt="3DPain three-stage data generation pipeline: mesh generation, texture diffusion, and AU-driven rigging." style="width: 100%;">
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            Our three-stage pipeline generates diverse, controllable synthetic pain faces:
+          </p>
+          <ol>
+            <li><strong>3D Mesh Generation:</strong> We create diverse facial geometries using parametric 3D morphable models (FLAME), sampling across age, gender, and ethnicity to ensure demographic balance.</li>
+            <li><strong>Texture Synthesis:</strong> Diffusion models generate realistic skin textures for each mesh, producing photo-realistic face appearances.</li>
+            <li><strong>AU-Driven Rigging:</strong> Pain expressions are applied through Action Unit (AU) configurations mapped to clinically validated PSPI scores, generating paired neutral and pain images with precise control over expression intensity.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Model Architecture -->
+<section class="section" style="background-color: #f5f5f5;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">ViTPain Architecture</h2>
+        <div class="content has-text-centered">
+          <img src="./static/images/architecture.png" alt="ViTPain model architecture: DinoV3 backbone with LoRA adapters, neutral reference cross-attention, and AU query head." style="width: 100%;">
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            <strong>ViTPain</strong> is a reference-guided Vision Transformer designed for automated pain assessment:
+          </p>
+          <ul>
+            <li><strong>DinoV3 Backbone</strong> with LoRA adapters for efficient fine-tuning</li>
+            <li><strong>Neutral Reference Module:</strong> Cross-attention mechanism comparing the pain image against a subject-specific neutral reference to isolate pain-related changes</li>
+            <li><strong>AU Query Head:</strong> Learnable queries attending to visual features for Action Unit intensity prediction</li>
+            <li><strong>Multi-task Learning:</strong> Joint prediction of PSPI pain score (0&ndash;16) and six Action Unit intensities (AU4, AU6, AU7, AU9, AU10, AU43)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Dataset and Model -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Resources</h2>
+        <div class="columns is-centered">
+          <!-- Dataset Card -->
+          <div class="column is-half">
+            <div class="box" style="height: 100%;">
+              <h3 class="title is-4">
+                &#128202; 3D-Pain Dataset
+              </h3>
+              <div class="content">
+                <ul>
+                  <li><strong>82,500</strong> synthetic face images</li>
+                  <li><strong>2,500</strong> unique identities</li>
+                  <li><strong>25,000</strong> pain expression heatmaps</li>
+                  <li>3 viewpoints per expression</li>
+                  <li>Paired neutral &amp; pain images</li>
+                  <li>AU + PSPI annotations</li>
+                  <li>Balanced by age, gender, ethnicity</li>
+                </ul>
+                <a href="https://huggingface.co/datasets/SoroushMehraban/3D-Pain" class="button is-link is-rounded">
+                  <span class="icon">&#129303;</span>
+                  <span>Download Dataset</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- Model Card -->
+          <div class="column is-half">
+            <div class="box" style="height: 100%;">
+              <h3 class="title is-4">
+                &#129504; ViTPain Checkpoint
+              </h3>
+              <div class="content">
+                <ul>
+                  <li>DinoV3-Large backbone</li>
+                  <li>LoRA rank=8, alpha=16</li>
+                  <li>Pretrained on 3D-Pain (150 epochs)</li>
+                  <li>Best epoch: 141 (MAE 1.859)</li>
+                  <li>Ready for UNBC fine-tuning</li>
+                  <li>MIT Licensed</li>
+                </ul>
+                <a href="https://huggingface.co/xinlei55555/ViTPain" class="button is-link is-rounded">
+                  <span class="icon">&#129303;</span>
+                  <span>Download Model</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quick Start -->
+<section class="section" style="background-color: #f5f5f5;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Quick Start</h2>
+        <div class="content">
+          <h3 class="title is-5">1. Download pretrained weights</h3>
+          <pre><code>pip install huggingface-hub
+huggingface-cli download xinlei55555/ViTPain \
+    vitpain-epoch=141-val_regression_mae=1.859.ckpt \
+    --local-dir ./checkpoints/</code></pre>
+
+          <h3 class="title is-5">2. Fine-tune on UNBC-McMaster (5-Fold CV)</h3>
+          <pre><code>python scripts/run_unbc_5fold_cv.py \
+    --pretrained_checkpoint ./checkpoints/vitpain-epoch=141-val_regression_mae=1.859.ckpt \
+    --data_dir datasets/UNBC-McMaster \
+    --model_size large_dinov3 \
+    --batch_size 100 --max_epochs 50 \
+    --au_loss_weight 0.1 \
+    --use_weighted_sampling --use_neutral_reference \
+    --output_dir experiment/unbc_5fold_cv</code></pre>
+
+          <h3 class="title is-5">3. Evaluate</h3>
+          <pre><code>python scripts/evaluate_unbc.py experiment/unbc_5fold_cv</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BibTeX -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{lin2025pain,
+  title={Pain in 3D: Generating Controllable Synthetic Faces for Automated Pain Assessment},
+  author={Lin, Xin Lei and Mehraban, Soroush and Moturu, Abhishek and Taati, Babak},
+  journal={arXiv preprint arXiv:2509.16727},
+  year={2025}
+}</code></pre>
+  </div>
+</section>
+
+<!-- Acknowledgements -->
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgements</h2>
+    <p>
+      This work was supported by the KITE Research Institute at the University Health Network and the University of Toronto.
+      We thank the members of the Taati Lab for their valuable feedback and discussions.
+    </p>
+    <p>
+      The UNBC-McMaster Shoulder Pain Expression Archive Database was used for evaluation in this work.
+      We gratefully acknowledge the original dataset creators for making it available to the research community.
+    </p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content" style="text-align: center;">
+          <p>
+            This website template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>,
+            licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
