@@ -118,24 +118,23 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Automated pain assessment from facial expressions is crucial for non-communicative patients, such as those with dementia.
+            Automated pain assessment from facial expressions is crucial for non-communicative patients.
             Progress has been limited by two challenges: (i) existing datasets exhibit severe demographic and label imbalance
             due to ethical constraints, and (ii) current generative models cannot precisely control facial action units (AUs),
             facial structure, or clinically validated pain levels.
           </p>
           <p>
-            We present <strong>3DPain</strong>, a large-scale synthetic dataset specifically designed for automated pain assessment,
-            featuring unprecedented annotation richness and demographic diversity. Our three-stage framework generates diverse 3D meshes,
-            textures them with diffusion models, and applies AU-driven face rigging to synthesize multi-view faces with paired neutral
-            and pain images, AU configurations, PSPI scores, and the first dataset-level annotations of pain-region heatmaps.
-            The dataset comprises <strong>82,500 samples</strong> across 25,000 pain expression heatmaps and 2,500 synthetic identities
-            balanced by age, gender, and ethnicity.
+            We introduce <strong>3DPain</strong>, a large-scale synthetic dataset designed to overcome data scarcity in automated pain assessment.
+            Comprising 82,500 frames across 2,500 unique identities, 3DPain offers extensive heterogeneity in facial pain responses across
+            demographic groups balanced by age, gender, and ethnicity. Our three-stage framework samples diverse 3D meshes, textures them with
+            diffusion models, and applies AU-driven face rigging to synthesize multi-view faces with paired neutral/pain images, facial action
+            units, PSPI scores, and pain-region heatmaps.
           </p>
           <p>
-            We further introduce <strong>ViTPain</strong>, a Vision Transformer based cross-modal distillation framework in which
-            a heatmap-trained teacher guides a student trained on RGB images, enhancing accuracy, interpretability, and clinical reliability.
-            Together, 3DPain and ViTPain establish a controllable, diverse, and clinically grounded foundation for generalizable
-            automated pain assessment.
+            We further introduce <strong>ViTPain</strong>, a Vision Transformer&ndash;based framework leveraging cross-attention with a neutral
+            reference face to achieve identity-aware pain estimation. Together, 3DPain and ViTPain establish a controllable, diverse, and
+            clinically grounded foundation for generalizable automated pain assessment. Project page and code are available at
+            <a href="https://xinlei55555.github.io/pain-in-3d.github.io/">https://xinlei55555.github.io/pain-in-3d.github.io/</a>.
           </p>
         </div>
       </div>
@@ -360,9 +359,7 @@
             licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
           <p>
-            <a href="https://hits.seeyoufarm.com">
-              <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fxinlei55555.github.io%2Fpain-in-3d.github.io&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=visitors&edge_flat=false" alt="visitor count">
-            </a>
+            <img src="https://visitor-badge.laobi.icu/badge?page_id=xinlei55555.pain-in-3d.github.io" alt="visitor count">
           </p>
         </div>
       </div>
